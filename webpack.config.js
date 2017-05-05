@@ -1,3 +1,4 @@
+const path = require("path");
 const webpack = require("webpack");
 
 module.exports = {
@@ -5,13 +6,25 @@ module.exports = {
 		app: ['./src/main.js']
 	},
 	module: {
-		loaders: [
-			{test: /\.js$/, include: [/src/], loader: 'babel?cacheDirectory'},
-			{test: /\.css$/, loader: 'style!css'}
-		]
+		rules: [{
+			include: [
+				path.resolve(__dirname, "src")
+			],
+			loader: 'babel-loader',
+			query: {
+				cacheDirectory: true
+			},
+			test: /\.js$/
+		}, {
+			test: /\.css$/,
+			use: [
+				'style-loader',
+				'css-loader'
+			]
+		}]
 	},
 	output: {
-		path: './src/build/',
+		path: path.resolve('./src/build'),
 		publicPath: '/build/',
 		filename: '[name].js'
 	},
@@ -19,7 +32,6 @@ module.exports = {
 		new webpack.DefinePlugin({
 			__DEV__: false,
 			"process.env.NODE_ENV": '"production"'
-		}),
-		new webpack.NoErrorsPlugin()
+		})
 	]
 };

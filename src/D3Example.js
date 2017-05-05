@@ -1,5 +1,5 @@
 import React, {Component, PropTypes} from 'react';
-import d3 from 'd3';
+import * as d3 from 'd3';
 import moment from 'moment';
 
 const STYLE_WRAPPER = {bottom: 0, left: 0, position: 'absolute', right: 0, top: 0};
@@ -134,8 +134,8 @@ export default class D3Example extends Component {
 			const yMax = machine.solution_vars.volume.max;
 			const yMin = machine.solution_vars.volume.min;
 
-			this.x[i] = d3.time.scale();
-			this.y[i] = d3.scale.linear().domain([yMin, yMax]);
+			this.x[i] = d3.scaleTime();
+			this.y[i] = d3.scaleLinear().domain([yMin, yMax]);
 		});
 	}
 
