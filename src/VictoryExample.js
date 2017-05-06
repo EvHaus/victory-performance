@@ -63,9 +63,10 @@ export default class VictoryExample extends Component {
 			const chartData = machine.solution_vars.volume.values;
 			const yMax = machine.solution_vars.volume.max;
 			const yMin = machine.solution_vars.volume.min;
+			const style = {...STYLE_ROW, width};
 
 			return (
-				<div style={{...STYLE_ROW, width}}>
+				<div style={style}>
 					<p style={STYLE_TITLE}>{machine.name}</p>
 					<VictoryBar
 						data={this._getFilteredData(chartData)}

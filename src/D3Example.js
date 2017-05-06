@@ -71,9 +71,10 @@ export default class D3Example extends Component {
 
 		return Object.keys(data.machines).map((i) => {
 			const machine = data.machines[i];
+			const style = {...STYLE_ROW, width};
 
 			return (
-				<div style={{...STYLE_ROW, width}}>
+				<div style={style}>
 					<p style={STYLE_TITLE}>{machine.name}</p>
 					<div ref={(node) => { this.nodes[i] = node; }} />
 				</div>
