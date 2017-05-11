@@ -18,8 +18,8 @@
   },
   "dependencies": {
     "d3": "4.8.0",
-    "react": "15.5.4",
-    "react-dom": "15.5.4",
+    "react": "16.0.0-alpha.12",
+    "react-dom": "16.0.0-alpha.12",
     "victory": "0.19.0"
   },
   "devDependencies": {
