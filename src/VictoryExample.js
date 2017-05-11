@@ -1,4 +1,4 @@
-import React, {Component, PropTypes} from 'react';
+import React, {PropTypes, PureComponent} from 'react';
 import moment from 'moment';
 import {VictoryBar} from 'victory';
 
@@ -7,7 +7,7 @@ const STYLE_ROW = {borderBottom: '1px solid black ', height: 83, position: 'rela
 const STYLE_TITLE = {left: 10, margin: 0, position: 'absolute', top: 10}
 const STYLE_SLIDER = {display: 'block', margin: 20};
 
-export default class VictoryExample extends Component {
+export default class VictoryExample extends PureComponent {
 	static displayName = "VictoryExample";
 
 	static propTypes = {
@@ -64,17 +64,19 @@ export default class VictoryExample extends Component {
 			const yMax = machine.solution_vars.volume.max;
 			const yMin = machine.solution_vars.volume.min;
 			const style = {...STYLE_ROW, width};
+			const domain = {x: [xMin, xMax], y: [yMin, yMax]};
+			const barStyle = {data: {fill: "#00a3de"}};
 
 			return (
 				<div style={style}>
 					<p style={STYLE_TITLE}>{machine.name}</p>
 					<VictoryBar
 						data={this._getFilteredData(chartData)}
-						domain={{x: [xMin, xMax], y: [yMin, yMax]}}
+						domain={domain}
 						height={83}
 						padding={0}
 						scale="time"
-						style={{data: {fill: "#00a3de"}}}
+						style={barStyle}
 						width={width}
 						x="time"
 						y="value" />
@@ -86,11 +88,14 @@ export default class VictoryExample extends Component {
 	_getFilteredData (chartData) {
 		const {xMin, xMax} = this.state;
 		const filtered = [];
+		const xMinTime = xMin.getTime();
+		const xMaxTime = xMax.getTime();
+
 		for (let i = 0, l = chartData.length; i < l; i++) {
 			const time = chartData[i].time.getTime();
-			if (time < xMin.getTime()) continue;
+			if (time < xMinTime) continue;
 			filtered.push(chartData[i]);
-			if (time > xMax.getTime()) break;
+			if (time > xMaxTime) break;
 		}
 		return filtered;
 	}

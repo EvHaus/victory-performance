@@ -15,9 +15,9 @@ Both of those actions are incredibly slow.
 
 ## Results
 
-**Panning with d3**: 20ms to 35ms per frame
-**Panning with victory**: 29ms to 78ms per frame
+- **Panning with d3**: 13ms to 18ms per frame
+- **Panning with victory**: 24ms to 74ms per frame
 
-**Rendering at full zoom with d3**: 1.52s
-**Rendering at full zoom with victory**: 5.28s
+- **Rendering at full zoom with d3**: 1.30s
+- **Rendering at full zoom with victory**: 10s
 

@@ -1,4 +1,4 @@
-import React, {Component, PropTypes} from 'react';
+import React, {PropTypes, PureComponent} from 'react';
 import * as d3 from 'd3';
 import moment from 'moment';
 
@@ -7,7 +7,7 @@ const STYLE_ROW = {borderBottom: '1px solid black ', height: 83, position: 'rela
 const STYLE_TITLE = {left: 10, margin: 0, position: 'absolute', top: 10}
 const STYLE_SLIDER = {display: 'block', margin: 20};
 
-export default class D3Example extends Component {
+export default class D3Example extends PureComponent {
 	static displayName = "D3Example";
 
 	static propTypes = {
@@ -116,11 +116,14 @@ export default class D3Example extends Component {
 	_getFilteredData (chartData) {
 		const {xMin, xMax} = this.state;
 		const filtered = [];
+		const xMinTime = xMin.getTime();
+		const xMaxTime = xMax.getTime();
+
 		for (let i = 0, l = chartData.length; i < l; i++) {
 			const time = chartData[i].time.getTime();
-			if (time < xMin.getTime()) continue;
+			if (time < xMinTime) continue;
 			filtered.push(chartData[i]);
-			if (time > xMax.getTime()) break;
+			if (time > xMaxTime) break;
 		}
 		return filtered;
 	}

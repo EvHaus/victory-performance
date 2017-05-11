@@ -1,4 +1,4 @@
-import React, {Component, PropTypes} from 'react';
+import React, {PureComponent} from 'react';
 import ReactDOM, {render} from 'react-dom';
 import data from './../data/data';
 import D3Example from './D3Example';
@@ -20,10 +20,11 @@ Object.keys(data.machines).forEach((id) => {
 	});
 });
 
-const STYLE_NAV = {borderBottom: '1px solid black', position: 'absolute', top: 0, left: 0, bottom: 0, right: 0};
-const STYLE_MAIN = {position: 'absolute', top: 30, left: 0, bottom: 0, right: 0};
+const STYLE_OUTER = {padding: 16};
+const STYLE_NAV = {borderBottom: '1px solid black', paddingBottom: 8};
+const STYLE_MAIN = {position: 'absolute', top: 48, left: 16, bottom: 0, right: 16};
 
-export default class App extends Component {
+export default class App extends PureComponent {
 	static displayName = "App";
 
 	state = {
@@ -35,7 +36,7 @@ export default class App extends Component {
 		const chartProps = {data, machineIndex, maxIndex, maxXTotal, minXTotal};
 
 		return (
-			<div>
+			<div style={STYLE_OUTER}>
 				<nav style={STYLE_NAV}>
 					<button onClick={this._handleVictory}>Render with Victory</button>
 					<button onClick={this._handleD3}>Render with d3</button>
