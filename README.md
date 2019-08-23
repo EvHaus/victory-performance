@@ -1,5 +1,7 @@
 # Victory Performance
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/EvHaus/victory-performance.svg)](https://greenkeeper.io/)
+
 A simple example illustrating the poor performance of Victory JS charts
 
 To run:
